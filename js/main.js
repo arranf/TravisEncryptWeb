@@ -35,8 +35,6 @@ function travisRequest(org, repo, toencrypt){
     var url = 'https://api.travis-ci.org/repos/'+org+'/'+repo+'/key';
     var request = $.getJSON( url)
       .done(function(data) {
-        console.log( data );
-        console.log(data.key);
         encrypt(toencrypt,data.key);
       })
       .fail(function(data) {
@@ -52,14 +50,36 @@ function encrypt(input, publicKey){
     var encrypt = new JSEncrypt();
     encrypt.setPublicKey(publicKey);
     var encrypted = encrypt.encrypt(input);
-    console.log(encrypted);
     insertResult(encrypted);
+    if(inputsHaveDuplicateValues()){
+        show('#dupe-warn');
+    }
 }
 
 function insertResult(encrypted){
-    var result = "<div class='panel panel-default' id='result-"+$('#counter').val()+"'><div class='panel-heading' id='result-heading'>"+$('#variable').val()+"</div><div class='panel-body'><pre id='result-content'> - secure: "+encrypted+"</pre></div></div>";
+    var result = "<div class='panel panel-default' id='result-"+$('#counter').val()+"'><div class='panel-heading' id='result-heading-"+$('#counter').val()+"'>"+$('#variable').val()+"</div><div class='panel-body'><pre id='result-content'> - secure: "+encrypted+"</pre></div></div>";
     $('#counter').val( function(i, oldval) {
     return ++oldval;
     });
     $('#results').append(result);
+}
+
+function inputsHaveDuplicateValues() {
+  var hasDuplicates = false;
+  $("[id|=result-heading]").each(function () {
+    var current = $(this).text();
+    var inputsWithSameValue = 0;
+    $("[id|=result-heading]").each(function () {
+        if ($(this).text() === current){
+            inputsWithSameValue++;
+        }
+        if (inputsWithSameValue > 1){
+            return;
+        }
+    });
+    hasDuplicates = inputsWithSameValue > 1;
+    //This will break out of the each loop if duplicates have been found.
+    return hasDuplicates;
+  });
+  return hasDuplicates;
 }
