@@ -67,7 +67,7 @@
                         <a class="btn btn-primary" id="submit" onclick="getEncryptedVar(); return;">Encrypt</a>
                         <div class="alert alert-info alert-dismissable" id="dupe-warn" hidden role="alert">
  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            The algorithim used to encrypt these values is non-deterministic. That means that encrypting the same value multiple times is unlikely to produce the same output. Any of the outputs produced will work just fine with Travis.</div>
+                            The algorithim used to encrypt these values is non-deterministic. That means that encrypting the same value multiple times is unlikely to produce the same output. Any of the outputs produced below will work.</div>
                     </div>
                 </div>
                 <input type="hidden" id="counter" value="0">
@@ -78,7 +78,8 @@
       <hr>
 
       <footer>
-        <p>Found a bug? Open an issue or a pull request.</p>
+        <p>Found a bug? Open an <a href="https://github.com/arranf/TravisEncryptWeb">issue</a> or a <a href="https://github.com/arranf/TravisEncryptWeb/pulls">pull request</a>.</p>
+        <p>Find out <a href="https://blog.arranfrance.com/encrypting-variables-for-travis-ci/">how this works</a>.</p>
         <p>Find out about my other projects <a href="https://arranfrance.com">arranfrance.com</a>
       </footer>
   </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
