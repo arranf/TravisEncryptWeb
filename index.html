@@ -49,17 +49,17 @@
                 </div>
         <div class="alert alert-danger alert-dismissable hidden" id="invalid" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            You've entered an invalid input. Please try again.</div>
+            <span id="invalid-info">You've entered an invalid input. Please try again.</span></div>
             <form>
                 <fieldset id="fields">
                     <label for="github-url">Your Github Repository URL</label>
                     <div class="input-group input-padding">
                         <span class="input-group-addon" id="github-url-addon"><i class="fa fa-github"></i> https://github.com/</span>
-                        <input type="text" class="form-control" id="github-url" aria-describedby="Input the rest of your repository URL for example twbs/bootstrap" placeholder="twbs/bootstrap" value="BricksandMortar/IdealPostcodes">
+                        <input type="text" class="form-control" id="github-url" aria-describedby="Input the rest of your repository URL for example twbs/bootstrap" placeholder="twbs/bootstrap">
                     </div>
                     <div class="input-padding">
                         <label for="variable">Variable to be Encrypted</label>
-                        <input type="text" class="form-control" id="variable" aria-describedby="The variable to be encrypted in the format NAME=VARIABLE" placeholder="GH_TOKEN=0932e365991277187889e1dfcdbcfe6f98600294" value="GH_TOKEN=0932e365991277187889e1dfcdbcfe6f98600294">
+                        <input type="text" class="form-control" id="variable" aria-describedby="The variable to be encrypted in the format NAME=VARIABLE" placeholder="GH_TOKEN=0932e365991277187889e1dfcdbcfe6f98600294">
                     </div>
                 </fieldset>
                 <div id="results">

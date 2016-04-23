@@ -6,16 +6,21 @@ function getEncryptedVar(){
     var input_regex = new RegExp('[\S]*\=\S*');
     var github = $('#github-url').val();
     var input = $('#variable').val();
-    if ( github_regex.test(github) === true && input_regex.test(input) ) {
+    if (github === '' || github === null || input === '' || input === null){
+        $('#invalid-info').text('You have not completed all of the fields.');
+        show('#invalid');
+    }
+    else if ( github_regex.test(github) === true && input_regex.test(input) ) {
         $('#invalid').hide();
         var org = github.match(github_regex)[1];
         var repository = github.match(github_regex)[2];
         travisRequest(org,repository,input);
     }
     else {
+        $('#invalid-info').text("You've entered an invalid input. Please try again.");
         show('#invalid');
-        reset();
     }
+    reset();
 }
 
 function reset(){
@@ -38,11 +43,12 @@ function travisRequest(org, repo, toencrypt){
         encrypt(toencrypt,data.key);
       })
       .fail(function(data) {
+          $('#invalid-info').text("There was an error accessing the public-key for the repository information you entered. Is it setup on Travis?");
+          show('#invalid');
         console.log( "Error" );
       })
       .always(function (data) {
         console.log( "Complete" );
-        reset();
       });
 }
 
