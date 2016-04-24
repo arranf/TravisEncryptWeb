@@ -1,91 +1,134 @@
-<!doctype html>
+﻿<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Travis Encrypter | by Arran France</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://travisencrypt.arranfrance.com/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://travisencrypt.arranfrance.com/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://travisencrypt.arranfrance.com/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://travisencrypt.arranfrance.com/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://travisencrypt.arranfrance.com/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://travisencrypt.arranfrance.com/apple-touch-icon-152x152.png" />
-        <link rel="icon" type="image/png" href="https://travisencrypt.arranfrance.com/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="https://travisencrypt.arranfrance.com/favicon-16x16.png" sizes="16x16" />
-        <meta name="application-name" content="Travis Encrypter"/>
-        <meta name="msapplication-TileColor" content="#FFFFFF" />
-        <meta name="msapplication-TileImage" content="https://travisencrypt.arranfrance.com/mstile-144x144.png" />
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Travis Encrypter | by Arran France</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://travisencrypt.arranfrance.com/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://travisencrypt.arranfrance.com/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://travisencrypt.arranfrance.com/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://travisencrypt.arranfrance.com/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://travisencrypt.arranfrance.com/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://travisencrypt.arranfrance.com/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="https://travisencrypt.arranfrance.com/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://travisencrypt.arranfrance.com/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="Travis Encrypter" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="https://travisencrypt.arranfrance.com/mstile-144x144.png" />
 
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
                 <div class="page-header text-center">
                     <h1>Travis Encrypter</h2>
                 </div>
-        <div class="alert alert-danger alert-dismissable hidden" id="invalid" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span id="invalid-info">You've entered an invalid input. Please try again.</span></div>
-            <form>
-                <fieldset id="fields">
-                    <label for="github-url">Your Github Repository URL</label>
-                    <div class="input-group input-padding">
-                        <span class="input-group-addon" id="github-url-addon"><i class="fa fa-github"></i> https://github.com/</span>
-                        <input type="text" class="form-control" id="github-url" aria-describedby="Input the rest of your repository URL for example twbs/bootstrap" placeholder="twbs/bootstrap">
+            </div>
+            <div class="col-md-offset-3 col-md-6">
+                <div id="tab-container">
+                    <div id="tabs">
+                        <ul class="nav nav-pills" role="tablist" id="encryption-tabs">
+                            <li role="presentation" class="active"><a href="#simple-var" role="tab" data-toggle="tab">Variable</a></li>
+                            <li role="presentation"><a href="#file" role="tab" data-toggle="tab">File</a></li>
+                        </ul>
                     </div>
-                    <div class="input-padding">
-                        <label for="variable">Variable to be Encrypted</label>
-                        <input type="text" class="form-control" id="variable" aria-describedby="The variable to be encrypted in the format NAME=VARIABLE" placeholder="GH_TOKEN=0932e365991277187889e1dfcdbcfe6f98600294">
+                    <div class="alert alert-danger alert-dismissable hidden" id="invalid" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span id="invalid-info">You've entered an invalid input. Please try again.</span>
                     </div>
-                </fieldset>
-                <div id="results">
-                    <div class="text-center center-block" >
-                        <a class="btn btn-primary" id="submit" onclick="getEncryptedVar(); return;">Encrypt</a>
-                        <div class="alert alert-info alert-dismissable" id="dupe-warn" hidden role="alert">
- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            The algorithim used to encrypt these values is non-deterministic. That means that encrypting the same value multiple times is unlikely to produce the same output. Any of the outputs produced below will work.</div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="simple-var">
+                            <form>
+                                <fieldset id="fields">
+                                    <label for="github-url">Your Github Repository URL</label>
+                                    <div class="input-group input-padding">
+                                        <span class="input-group-addon" id="github-url-addon"><i class="fa fa-github"></i> https://github.com/</span>
+                                        <input type="text" class="form-control" id="github-url" aria-describedby="Input the rest of your repository URL for example twbs/bootstrap" placeholder="twbs/bootstrap">
+                                    </div>
+                                    <div class="input-padding">
+                                        <label for="variable">Variable to be Encrypted</label>
+                                        <input type="text" class="form-control" id="variable" aria-describedby="The variable to be encrypted in the format NAME=VARIABLE" placeholder="GH_TOKEN=0932e365991277187889e1dfcdbcfe6f98600294">
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <div class="text-center center-block">
+                                <a class="btn btn-primary" id="submit-variable" onclick="getEncryptedVar(); return;">Encrypt</a>
+                            </div>
+                            </div>
+                        <div role="tabpanel" class="tab-pane" id="file">
+                            <form>
+                                <fieldset>
+                                    <label for="input-file">The File you Wish to Encrypt</label>
+                                    <input id="input-file" type=file>
+                                </fieldset>
+                            </form>
+                            <div class="text-center center-block">
+                                <a class="btn btn-primary" id="submit-file" onclick="getEncryptedVar(); return;">Encrypt</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-offset-3 col-md-6">
+                <div id="results">
+                        <div class="alert alert-info alert-dismissable" id="dupe-warn" hidden role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            The algorithim used to encrypt these values is non-deterministic. That means that encrypting the same value multiple times is unlikely to produce the same output. Any of the outputs produced below will work.
+                        </div>
+                    </div>
                 <input type="hidden" id="counter" value="0">
-            </form>
+            </div>
         </div>
-      </div>
 
-      <hr>
+        <hr>
 
-      <footer>
-        <p>Found a bug? Open an <a href="https://github.com/arranf/TravisEncryptWeb">issue</a> or a <a href="https://github.com/arranf/TravisEncryptWeb/pulls">pull request</a>.</p>
-        <p>Find out <a href="https://blog.arranfrance.com/encrypting-variables-for-travis-ci/">how this works</a>.</p>
-        <p>Find out about my other projects <a href="https://arranfrance.com">arranfrance.com</a>
-      </footer>
-  </div> <!-- /container -->        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-        <script src="js/vendor/jsencrypt.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+        <footer>
+            <p>Found a bug? Open an <a href="https://github.com/arranf/TravisEncryptWeb">issue</a> or a <a href="https://github.com/arranf/TravisEncryptWeb/pulls">pull request</a>.</p>
+            <p>Find out <a href="https://blog.arranfrance.com/encrypting-variables-for-travis-ci/">how this works</a>.</p>
+            <p>Find out about my other projects <a href="https://arranfrance.com">arranfrance.com</a>
+        </footer>
+    </div> <!-- /container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script>
+        $('#encryption-tabs a').click(function (e)
+        {
+            if ($(this).parent('li').hasClass('active')) {
+                $($(this).attr('href')).hide();
+            }
+            else {
+                e.preventDefault();
+                $(this).tab('show');
+            }
+        });</script>
+    <script src="js/vendor/jsencrypt.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>
