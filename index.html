@@ -50,48 +50,51 @@
                 </div>
             </div>
             <div class="col-md-offset-3 col-md-6">
+                <div class="alert alert-danger alert-dismissable hidden" id="invalid" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span id="invalid-info">You've entered an invalid input. Please try again.</span>
+                </div>
+                <div class="field-container" id="github-input">
+                    <label for="github-url">Your Github Repository URL</label>
+                    <div class="input-group input-padding">
+                        <span class="input-group-addon" id="github-url-addon"><i class="fa fa-github"></i> https://github.com/</span>
+                        <input type="text" class="form-control" id="github-url" value="BricksandMortar/IdealPostcodes" aria-describedby="Input the rest of your repository URL for example twbs/bootstrap" placeholder="twbs/bootstrap">
+                    </div>
+                </div>
                 <div id="tab-container">
                     <div id="tabs">
                         <ul class="nav nav-tabs" role="tablist" id="encryption-tabs">
-                            <li role="presentation" class="active"><a href="#simple-var" role="tab" data-toggle="tab">Variable</a></li>
-                            <li role="presentation"><a href="#file" role="tab" data-toggle="tab">File</a></li>
+                            <li role="presentation" id="tab-variable" class="active"><a href="#simple-var" role="tab" data-toggle="tab">Variable</a></li>
+                            <li role="presentation" id="tab-file"><a href="#file" role="tab" data-toggle="tab">File</a></li>
                         </ul>
-                    </div>
-                    <div class="alert alert-danger alert-dismissable hidden" id="invalid" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <span id="invalid-info">You've entered an invalid input. Please try again.</span>
                     </div>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="simple-var">
                             <form>
-                                <fieldset id="fields">
-                                    <label for="github-url">Your Github Repository URL</label>
-                                    <div class="input-group input-padding">
-                                        <span class="input-group-addon" id="github-url-addon"><i class="fa fa-github"></i> https://github.com/</span>
-                                        <input type="text" class="form-control" id="github-url" aria-describedby="Input the rest of your repository URL for example twbs/bootstrap" placeholder="twbs/bootstrap">
-                                    </div>
+                                <fieldset class="field-container">
                                     <div class="input-padding">
                                         <label for="variable">Variable to be Encrypted</label>
                                         <input type="text" class="form-control" id="variable" aria-describedby="The variable to be encrypted in the format NAME=VARIABLE" placeholder="GH_TOKEN=0932e365991277187889e1dfcdbcfe6f98600294">
                                     </div>
                                 </fieldset>
                             </form>
-                            <div class="text-center center-block">
-                                <a class="btn btn-primary" id="submit-variable" onclick="getEncryptedVar(); return;">Encrypt</a>
-                            </div>
+
                             </div>
                         <div role="tabpanel" class="tab-pane" id="file">
+                            <div class="alert alert-danger" id="file-unsupported" hidden role="alert">
+                                <p>Your browser does not support the <a href="https://developer.mozilla.org/en/docs/Web/API/File">File API</a> used to access files for encryption. Please visit <a href="http://browsehappy.com/">Browse Happy</a> to upgrade your browser today.</p> 
+                            </div>
                             <form>
-                                <fieldset>
+                                <fieldset class="field-container">
                                     <label for="input-file">The File you Wish to Encrypt</label>
                                     <input id="input-file" type=file>
                                 </fieldset>
                             </form>
-                            <div class="text-center center-block">
-                                <a class="btn btn-primary" id="submit-file" onclick="getEncryptedVar(); return;">Encrypt</a>
-                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="text-center center-block">
+                    <a class="btn btn-primary" id="submit-variable" onclick="start(); return;">Encrypt</a>
                 </div>
             </div>
             <div class="col-md-offset-3 col-md-6">
@@ -116,19 +119,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-    <script>
-        $('#encryption-tabs a').click(function (e)
-        {
-            if ($(this).parent('li').hasClass('active')) {
-                $($(this).attr('href')).hide();
-            }
-            else {
-                e.preventDefault();
-                $(this).tab('show');
-            }
-        });</script>
     <script src="js/vendor/jsencrypt.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/asmcrypto.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
