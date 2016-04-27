@@ -1,6 +1,6 @@
 function start(){
     disable();
-    var github_regex = new RegExp('([A-za-z0-9_-]{1,39})(?:\/)([A-za-z0-9_-]*)');
+    var github_regex = new RegExp('([A-za-z0-9_-]{1,39})(?:\/)([A-za-z0-9_\\-\\.]*)');
     var github = $('#github-url').val();
     if (github_regex.test(github) === false) {
         $('#invalid-info').text("You've entered an invalid input. Please try again.");
@@ -15,7 +15,7 @@ function start(){
     if ( $('li.active').attr('id') === 'tab-variable' ){
         getEncryptedVar(org, repository);
     }
-    else {
+    else if( $('li.active').attr('id') === 'tab-file' ) {
         getEncryptedFile(org, repository);
     }
     reset();
@@ -30,7 +30,7 @@ function getEncryptedVar(org, repository)
         $('#invalid-info').text('You have not completed all of the fields.');
         show('#invalid');
     }
-    else if (input_regex.test(github) === true) {
+    else if (input_regex.test(input) === true) {
         $('#invalid').hide();
         travisRequest(org, repository, input, 'variable');
     }
@@ -45,9 +45,7 @@ function getEncryptedFile(org, repository)
     if (window.File && window.FileReader && window.FileList && window.Blob) {
         // Great success! All the File APIs are supported.
         if (document.getElementById('input-file').files[0] != null) {
-            var password = getPassword();
-            var input = 'super_secret_password= ' + password;
-            travisRequest(org, repository, input, file);
+            travisRequest(org, repository, "", file);
         }
         else {
             show('#invalid');
@@ -56,18 +54,6 @@ function getEncryptedFile(org, repository)
     else {
         show('#file-unsupported');
     }
-}
-
-function getPassword(length)
-{
-    var text = "";
-    var array = new Uint32Array(length)
-    asmCrypto.random.seed(array);
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!'£$%^&*()-=+{[}]:;@~#<,>.?/";
-    for (var i = 0; i < 32; i++)
-        text += possible.charCodeAt(Math.floor(array[i] * possible.length)).toString(2);
-
-    return text;
 }
 
 function disable()
@@ -99,13 +85,13 @@ function travisRequest(org, repo, input, type)
       {
           var key = data.key;
           if (type === 'variable') {
-              insertResult(encryptVar(input, key));
+              insertResult(encryptVar(input, key), type);
               if (inputsHaveDuplicateValues()) {
                   show('#dupe-warn');
               }
           }
           else {
-              encryptFile(encryptVar(input, key), input, org, repo);
+              encryptFile(key, org, repo);
           }
       })
       .fail(function (data)
@@ -127,11 +113,11 @@ function show(element){
     $(element).show();
 }
 
-function encryptVar(input, publicKey){
-    var encrypt = new JSEncrypt();
-    encrypt.setPublicKey(publicKey);
-    return encrypt.encrypt(input);
-
+function encryptVar(input, publicKey)
+{
+    var key = forge.pki.publicKeyFromPem(publicKey);
+    var encrypted = key.encrypt(input);
+    return btoa(encrypted);
 }
 
 function insertResult(encrypted, type)
@@ -180,39 +166,39 @@ function getGithubRepo()
     return repository = $('#github-url').val().match(github_regex)[2];
 }
 
+
+
 //http://stackoverflow.com/questions/25354313/saving-a-uint8array-to-a-binary-file
-function downloadURL(data, fileName)
-{
-    var a;
-    a = document.createElement('a');
-    a.href = data;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.style = 'display: none';
-    a.click();
-    a.remove();
-};
 
-function downloadBlob(encrypted, encryptedFileName, mimeType)
-    {
-        var blob, url;
-        blob = new Blob([data], {
-            type: mimeType
-        });
-        url = window.URL.createObjectURL(blob);
-        downloadURL(url, fileName, mimeType);
-        setTimeout(function ()
-        {
-            return window.URL.revokeObjectURL(url);
-        }, 1000);
-    }; 
-
-function encryptFile(encrypted, input)
+//https://github.com/digitalbazaar/forge/issues/200
+function str2ab_3(str)
 {
-    var password = input.replace('super_secret_password= ');
+    var length = str.length;
+    var buff = new ArrayBuffer(length);
+    var buffView = new Uint8Array(buff);
+    for (var i = 0; i < length; i += 65535) {
+        var addition = (i + 65535 > length) ? length - i : 65535;
+        // slice and map are native functions 
+        buffView.set(str.slice(i, i + addition).split('').map(function (el) { return el.charCodeAt(); }));
+    }
+    return buff;
+}
+function encryptFile(rsaPublicKey, org, repo)
+{
+    var salt = forge.random.getBytesSync(256);
+    var iv = forge.random.getBytesSync(16);
+    var aesKey = forge.random.getBytesSync(32)
+    var password = 'SECRET_KEY=' + forge.util.encode64(aesKey);
+    var encryptedVariable = encryptVar(password, rsaPublicKey);
+    var cipher = forge.cipher.createCipher('AES-CBC', aesKey);
     var file = document.getElementById('input-file').files[0];
     var reader = new FileReader();
-    var binaryString = reader.readAsBinaryString;
-    var encryptedData = asmCrypto.AES_CBC.encrypt(binaryString, password, iv=256);
-    var downloadBlob = (encryptedData, file.name + '.enc', file.mimeType);
+    var read = reader.readAsArrayBuffer(file);
+    cipher.start({ iv: iv });
+    cipher.update(forge.util.createBuffer(read));
+    cipher.finish();
+    var encryptedData = str2ab_3(cipher.output.getBytes());
+    var blob = new Blob([encryptedData], { type: 'application/octet-binary' });
+    saveAs(blob, file.name + ".enc");
+    insertResult(forge.util.encode64(aesKey), 'file');
 }
