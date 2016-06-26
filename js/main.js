@@ -1,5 +1,4 @@
 function getEncryptedVar(){
-    debugger;
     $('#fields').prop('disabled', true);
     $('#submit').text('Fetching...');
     $('#submit').prop('disabled', true);
@@ -15,8 +14,8 @@ function getEncryptedVar(){
         $('#invalid').hide();
         var org = github.match(github_regex)[1];
         var repository = github.match(github_regex)[2];
-        console.log(org);
-        console.log(repository);
+        console.log('Org: '+ org);
+        console.log('Repository:' + repository);
         travisRequest(org,repository,input);
     }
     else {
