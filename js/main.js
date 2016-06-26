@@ -14,6 +14,8 @@ function getEncryptedVar(){
         $('#invalid').hide();
         var org = github.match(github_regex)[1];
         var repository = github.match(github_regex)[2];
+        console.log(org);
+        console.log(repository);
         travisRequest(org,repository,input);
     }
     else {
