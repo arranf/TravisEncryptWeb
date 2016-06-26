@@ -2,7 +2,7 @@ function getEncryptedVar(){
     $('#fields').prop('disabled', true);
     $('#submit').text('Fetching...');
     $('#submit').prop('disabled', true);
-    var github_regex = new RegExp('([A-za-z0-9_-]{1,39})(?:\/)([A-za-z0-9_-]*)');
+    var github_regex = new RegExp('([A-za-z0-9_-]{1,39})(?:\/)([A-za-z0-9_\-\.]*)');
     var input_regex = new RegExp('[\S]*\=\S*');
     var github = $('#github-url').val();
     var input = $('#variable').val();
