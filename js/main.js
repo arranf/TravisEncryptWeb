@@ -1,4 +1,5 @@
 function getEncryptedVar(){
+    debugger;
     $('#fields').prop('disabled', true);
     $('#submit').text('Fetching...');
     $('#submit').prop('disabled', true);
